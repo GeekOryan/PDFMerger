@@ -27,12 +27,15 @@ from pypdf import PdfMerger
 def main():
     print("Welcome to the PDF Merger!!")
     
+    file_track = []
+    
     while(True):
         
         user_input = input("Enter the pdf file path: ")
         
         if user_input == "done":
-            if len(user_input) < 2:
+            if len(file_track) < 2:
                 print("Incorrect number of files inserted. Try Again.")
             else:
-                
+                print("Files successfully loaded")
+                break
