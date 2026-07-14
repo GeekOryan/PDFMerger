@@ -1,28 +1,4 @@
-'''
-1. Display welcome message
-2. Loop: ask user for a PDF file path (or type "done" to finish)
-3. If input is "done":
-     - If fewer than 2 files added, show error, keep looping
-     - If 2+ files added, show "Files loaded" + exit the collection loop
-4. If input is a file path:
-     - Check path exists AND ends in .pdf
-     - If invalid, show specific error, loop again
-     - If valid, add to list, display running list of files added so far
-5. Ask for output filename
-     - Auto-append .pdf if user didn't type it
-6. Check if that filename already exists
-     - If yes, ask for confirmation to overwrite (y/n)
-     - If "n", ask for a new filename
-7. Attempt the merge
-     - If it fails, show exact error + suggested fix
-     - If it succeeds, show success message with output filename
-8. Ask: merge another batch, or exit
-     - If another batch, loop back to Step 2
-     - If exit, close program
-
-'''
-
-from pypdf import PdfMerger
+from pypdf import PdfWriter
 import os
 
 def main():
@@ -68,14 +44,23 @@ def main():
              break
     try:
          
-        merger = PdfMerger()
+        writer = PdfWriter()
     
         for x in file_track:
-             merger.append(x)
+             writer.append(x)
          
-        merger.write(filename_with_ext)
-        merger.close()
+        writer.write(filename_with_ext)
+        writer.close()
         print(f"Success! Files merged into {filename_with_ext}")
         
     except Exception as e:
          print(f"An error occured: {e}")
+         
+         
+if __name__ == "__main__":
+     while True:
+          main()
+          
+          again = input("Merge another batch? (y/n): ")
+          if again.lower() != "y":
+               break
