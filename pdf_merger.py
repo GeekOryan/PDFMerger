@@ -47,8 +47,16 @@ def main():
                   file_track.append(user_input)
                   print(f"Files currently being tracked:  {file_track}")
              else:
-                  if not os.path.exists:
+                  if not os.path.exists(user_input):
                        print("The file path does not exist. Please try again.")
                   else:
                        print("The file is not a PDF file. Please try again.")
                        
+    output_filename = input("Name your file (must end with .pdf): ")
+        
+    has_pdf_extension = output_filename.endswith('.pdf')
+    
+    if not has_pdf_extension:
+         filename_with_ext = output_filename + ".pdf"
+    else:
+         filename_with_ext = output_filename
