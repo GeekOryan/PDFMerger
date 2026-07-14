@@ -66,3 +66,16 @@ def main():
                   break
         else:
              break
+    try:
+         
+        merger = PdfMerger()
+    
+        for x in file_track:
+             merger.append(x)
+         
+        merger.write(filename_with_ext)
+        merger.close()
+        print(f"Success! Files merged into {filename_with_ext}")
+        
+    except Exception as e:
+         print(f"An error occured: {e}")
