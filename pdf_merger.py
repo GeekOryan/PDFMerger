@@ -23,6 +23,7 @@
 '''
 
 from pypdf import PdfMerger
+import os
 
 def main():
     print("Welcome to the PDF Merger!!")
@@ -39,3 +40,15 @@ def main():
             else:
                 print("Files successfully loaded")
                 break
+        else:
+             path_exists = os.path.exists(user_input)
+             is_pdf = user_input.endswith('.pdf')
+             if path_exists and is_pdf == True:
+                  file_track.append(user_input)
+                  print(f"Files currently being tracked:  {file_track}")
+             else:
+                  if not os.path.exists:
+                       print("The file path does not exist. Please try again.")
+                  else:
+                       print("The file is not a PDF file. Please try again.")
+                       
