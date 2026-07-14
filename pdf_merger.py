@@ -51,12 +51,18 @@ def main():
                        print("The file path does not exist. Please try again.")
                   else:
                        print("The file is not a PDF file. Please try again.")
-                       
-    output_filename = input("Name your file (must end with .pdf): ")
+    while True:
+        output_filename = input("Name your file (must end with .pdf): ")
         
-    has_pdf_extension = output_filename.endswith('.pdf')
+        has_pdf_extension = output_filename.endswith('.pdf')
     
-    if not has_pdf_extension:
-         filename_with_ext = output_filename + ".pdf"
-    else:
-         filename_with_ext = output_filename
+        if not has_pdf_extension:
+            filename_with_ext = output_filename + ".pdf"
+        else:
+            filename_with_ext = output_filename
+        if os.path.exists(filename_with_ext):
+             confirm = input(f"{filename_with_ext} already exists. Overwrite? (y/n): ")
+             if confirm.lower() == "y":
+                  break
+        else:
+             break
